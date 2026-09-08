@@ -1,0 +1,662 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Madrid Habitada · Caso de estudio · Claudia Erustes Barba</title>
+<meta name="description" content="Caso de estudio de Madrid Habitada: concepto, diseño y desarrollo de un proyecto web propio.">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght,SOFT,WONK@9..144,300..600,0..100,0..1&family=Instrument+Sans:wght@400..600&display=swap" rel="stylesheet">
+<style>
+/* ============================================================
+   Porfolio · hoja de estilos única
+   Para cambiar el color de acento, edita --acento aquí abajo.
+   ============================================================ */
+
+:root {
+  /* Color */
+  --papel:      #F3F3F1;
+  --papel-hond: #E9E9E5;
+  --tinta:      #1A1A18;
+  --gris:       #6E6E68;
+  --linea:      #DCDCD6;
+  --acento:     #2F5D50;
+
+  /* Tipografía */
+  --display: "Fraunces", Georgia, serif;
+  --texto:   "Instrument Sans", system-ui, -apple-system, sans-serif;
+
+  /* Escala tipográfica (base 16, razón ~1,25) */
+  --t-xs: 0.8125rem;
+  --t-s:  0.9375rem;
+  --t-m:  1.0625rem;
+  --t-l:  1.375rem;
+  --t-xl: clamp(1.75rem, 1.2rem + 2vw, 2.5rem);
+  --t-2xl: clamp(2.25rem, 1.4rem + 3.4vw, 3.75rem);
+
+  /* Ritmo vertical */
+  --aire-s: 2rem;
+  --aire-m: clamp(4rem, 8vw, 7rem);
+  --aire-l: clamp(6rem, 14vw, 12rem);
+
+  /* Medidas */
+  --ancho: 78rem;
+  --margen: clamp(1.5rem, 6vw, 6rem);
+}
+
+*, *::before, *::after { box-sizing: border-box; }
+
+html { -webkit-text-size-adjust: 100%; scroll-behavior: smooth; }
+
+body {
+  margin: 0;
+  background: var(--papel);
+  color: var(--tinta);
+  font-family: var(--texto);
+  font-size: var(--t-m);
+  line-height: 1.6;
+  font-synthesis-weight: none;
+  -webkit-font-smoothing: antialiased;
+}
+
+img { display: block; max-width: 100%; height: auto; }
+
+a { color: inherit; }
+
+::selection { background: var(--acento); color: var(--papel); }
+
+:focus-visible {
+  outline: 2px solid var(--acento);
+  outline-offset: 4px;
+  border-radius: 2px;
+}
+
+.limite {
+  max-width: var(--ancho);
+  margin-inline: auto;
+  padding-inline: var(--margen);
+}
+
+/* ---------- Barra superior ---------- */
+
+.barra {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 2rem;
+  flex-wrap: wrap;
+  padding-block: 1.75rem;
+}
+
+.barra__firma {
+  font-family: var(--display);
+  font-variation-settings: "SOFT" 0, "WONK" 1;
+  font-size: var(--t-l);
+  font-weight: 400;
+  text-decoration: none;
+  letter-spacing: -0.01em;
+}
+
+.barra__menu {
+  display: flex;
+  gap: 1.75rem;
+  font-size: var(--t-s);
+}
+
+.barra__menu a {
+  text-decoration: none;
+  color: var(--gris);
+  padding-block: 0.25rem;
+  border-bottom: 1px solid transparent;
+  transition: color 0.15s ease, border-color 0.15s ease;
+}
+
+.barra__menu a:hover { color: var(--tinta); border-bottom-color: var(--tinta); }
+
+/* ---------- Portada ---------- */
+
+.portada {
+  padding-block: clamp(3rem, 9vw, 8rem) var(--aire-m);
+}
+
+.portada__nombre {
+  font-family: var(--display);
+  font-variation-settings: "SOFT" 0, "WONK" 1;
+  font-optical-sizing: auto;
+  font-weight: 300;
+  font-size: clamp(2.75rem, 12vw, 10.5rem);
+  line-height: 0.86;
+  letter-spacing: -0.045em;
+  margin: 0;
+}
+
+.portada__frase {
+  font-size: var(--t-xl);
+  font-weight: 400;
+  line-height: 1.3;
+  letter-spacing: -0.015em;
+  max-width: 30ch;
+  margin: clamp(2rem, 5vw, 3.5rem) 0 0;
+}
+
+.portada__pie {
+  margin: 2.5rem 0 0;
+  font-size: var(--t-m);
+  color: var(--gris);
+  max-width: 46ch;
+}
+
+/* Entrada única al cargar la página */
+.portada__nombre,
+.portada__frase,
+.portada__pie {
+  animation: entra 0.9s cubic-bezier(0.2, 0.7, 0.3, 1) both;
+}
+.portada__frase { animation-delay: 0.12s; }
+.portada__pie   { animation-delay: 0.2s; }
+
+@keyframes entra {
+  from { opacity: 0; transform: translateY(0.6rem); }
+  to   { opacity: 1; transform: none; }
+}
+
+/* ---------- Secciones ---------- */
+
+.seccion { padding-block: var(--aire-m); }
+
+.seccion__titulo {
+  font-family: var(--display);
+  font-variation-settings: "SOFT" 0, "WONK" 1;
+  font-weight: 400;
+  font-size: var(--t-xl);
+  letter-spacing: -0.02em;
+  margin: 0 0 var(--aire-s);
+}
+
+/* ---------- Listado de proyectos ---------- */
+
+.proyectos {
+  display: grid;
+  gap: var(--aire-m);
+}
+
+.proyecto {
+  display: grid;
+  grid-template-columns: minmax(0, 3fr) minmax(0, 2fr);
+  gap: clamp(1.5rem, 4vw, 4rem);
+  align-items: start;
+}
+
+.proyecto__imagen {
+  margin: 0;
+  aspect-ratio: 4 / 3;
+  background: var(--papel-hond);
+  overflow: hidden;
+}
+
+.proyecto__imagen img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* Marca visible mientras no haya imagen todavía */
+.hueco {
+  width: 100%;
+  height: 100%;
+  display: grid;
+  place-content: center;
+  color: var(--gris);
+  font-size: var(--t-xs);
+  text-align: center;
+  padding: 1rem;
+  background:
+    repeating-linear-gradient(
+      -45deg,
+      transparent 0 14px,
+      rgba(110, 110, 104, 0.07) 14px 28px
+    );
+}
+
+.proyecto__ficha { padding-top: 0.25rem; }
+
+.proyecto__titulo {
+  font-family: var(--display);
+  font-variation-settings: "SOFT" 0, "WONK" 1;
+  font-weight: 400;
+  font-size: var(--t-2xl);
+  line-height: 1.02;
+  letter-spacing: -0.03em;
+  margin: 0 0 0.75rem;
+}
+
+.proyecto__titulo a {
+  text-decoration: none;
+  background-image: linear-gradient(var(--acento), var(--acento));
+  background-repeat: no-repeat;
+  background-size: 0% 1px;
+  background-position: 0 92%;
+  transition: background-size 0.3s ease, color 0.2s ease;
+}
+
+.proyecto__titulo a:hover { background-size: 100% 1px; color: var(--acento); }
+
+.proyecto__datos {
+  font-size: var(--t-s);
+  color: var(--gris);
+  margin: 0 0 1rem;
+}
+
+.proyecto__datos span { display: block; }
+
+.proyecto__resumen {
+  margin: 0 0 1.25rem;
+  max-width: 42ch;
+}
+
+.enlace {
+  font-size: var(--t-s);
+  color: var(--acento);
+  text-decoration: none;
+  border-bottom: 1px solid currentColor;
+  padding-bottom: 1px;
+}
+
+.enlace:hover { color: var(--tinta); }
+
+/* ---------- Sobre mí ---------- */
+
+.sobre {
+  display: grid;
+  grid-template-columns: minmax(0, 3fr) minmax(0, 2fr);
+  gap: clamp(2rem, 5vw, 5rem);
+  align-items: start;
+}
+
+.sobre p { max-width: 60ch; }
+
+.sobre p:first-of-type {
+  font-size: var(--t-l);
+  line-height: 1.45;
+  letter-spacing: -0.01em;
+}
+
+.retrato { margin: 0; }
+
+.retrato img {
+  width: 100%;
+  aspect-ratio: 3 / 4;
+  object-fit: cover;
+}
+
+.ficha-cv {
+  margin-top: var(--aire-m);
+  padding-top: 1.75rem;
+  border-top: 1px solid var(--linea);
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(12rem, 1fr));
+  gap: 2.5rem 2.5rem;
+  font-size: var(--t-s);
+}
+
+.ficha-cv h3 {
+  font-size: var(--t-s);
+  font-weight: 500;
+  color: var(--gris);
+  margin: 0 0 1.1rem;
+}
+
+.ficha-cv ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.ficha-cv li { margin-bottom: 0.9rem; }
+.ficha-cv li:last-child { margin-bottom: 0; }
+
+.cv-meta {
+  display: block;
+  color: var(--gris);
+}
+
+.cv-descarga { margin-top: 2.5rem; }
+
+/* ---------- Contacto ---------- */
+
+.contacto { padding-block: var(--aire-m) var(--aire-l); }
+
+.contacto__correo {
+  font-family: var(--display);
+  font-variation-settings: "SOFT" 0, "WONK" 1;
+  font-weight: 300;
+  font-size: clamp(1.5rem, 5.2vw, 3.75rem);
+  line-height: 1.1;
+  letter-spacing: -0.035em;
+  color: var(--acento);
+  text-decoration: none;
+  display: inline-block;
+  margin: 0.5rem 0 2rem;
+  word-break: break-word;
+}
+
+.contacto__correo:hover { color: var(--tinta); }
+
+.contacto__redes {
+  display: flex;
+  gap: 1.75rem;
+  flex-wrap: wrap;
+  font-size: var(--t-s);
+  padding: 0;
+  margin: 0;
+  list-style: none;
+}
+
+/* ---------- Pie ---------- */
+
+.pie {
+  border-top: 1px solid var(--linea);
+  padding-block: 2rem 3rem;
+  font-size: var(--t-xs);
+  color: var(--gris);
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+/* ============================================================
+   Página de caso de estudio
+   ============================================================ */
+
+.caso__cabecera { padding-block: clamp(2rem, 6vw, 5rem) var(--aire-s); }
+
+.caso__titulo {
+  font-family: var(--display);
+  font-variation-settings: "SOFT" 0, "WONK" 1;
+  font-weight: 300;
+  font-size: clamp(3rem, 11vw, 8rem);
+  line-height: 0.9;
+  letter-spacing: -0.04em;
+  margin: 0;
+}
+
+.caso__entrada {
+  font-size: var(--t-xl);
+  font-weight: 400;
+  line-height: 1.3;
+  letter-spacing: -0.015em;
+  max-width: 30ch;
+  margin: 2rem 0 0;
+}
+
+.caso__ficha {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(9rem, 1fr));
+  gap: 1.5rem 2rem;
+  margin: var(--aire-m) 0 0;
+  padding-top: 1.5rem;
+  border-top: 1px solid var(--linea);
+  font-size: var(--t-s);
+}
+
+.caso__ficha dt { color: var(--gris); margin-bottom: 0.2rem; }
+.caso__ficha dd { margin: 0; }
+
+.caso__portada {
+  margin-block: var(--aire-m) 0;
+  aspect-ratio: 16 / 9;
+  background: var(--papel-hond);
+  overflow: hidden;
+}
+
+.caso__portada img { width: 100%; height: 100%; object-fit: cover; }
+
+.bloque {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 2.2fr);
+  gap: clamp(1rem, 4vw, 4rem);
+  padding-block: var(--aire-m);
+}
+
+.bloque__titulo {
+  font-family: var(--display);
+  font-variation-settings: "SOFT" 0, "WONK" 1;
+  font-weight: 400;
+  font-size: var(--t-l);
+  letter-spacing: -0.015em;
+  margin: 0;
+  align-self: start;
+}
+
+.bloque__cuerpo > * { max-width: 62ch; }
+.bloque__cuerpo > :first-child { margin-top: 0; }
+.bloque__cuerpo > :last-child { margin-bottom: 0; }
+
+.bloque__cuerpo h3 {
+  font-size: var(--t-m);
+  font-weight: 500;
+  margin: 2rem 0 0.5rem;
+}
+
+.bloque__cuerpo ul { padding-left: 1.1rem; }
+.bloque__cuerpo li { margin-bottom: 0.4rem; }
+
+.destacado {
+  font-size: var(--t-l);
+  line-height: 1.4;
+  letter-spacing: -0.01em;
+  border-left: 2px solid var(--acento);
+  padding-left: 1.25rem;
+  margin: 2rem 0;
+  max-width: 40ch;
+}
+
+.figura { margin: 2.5rem 0 0; max-width: none; }
+
+.figura__marco {
+  aspect-ratio: 3 / 2;
+  background: var(--papel-hond);
+  overflow: hidden;
+}
+
+.figura__marco img { width: 100%; height: 100%; object-fit: cover; }
+
+.figura figcaption {
+  font-size: var(--t-xs);
+  color: var(--gris);
+  margin-top: 0.75rem;
+  max-width: 52ch;
+}
+
+.galeria {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(10rem, 1fr));
+  gap: 1rem;
+  margin-top: 2.5rem;
+}
+
+.galeria .figura__marco { aspect-ratio: 9 / 16; }
+
+.siguiente {
+  border-top: 1px solid var(--linea);
+  padding-block: var(--aire-m);
+}
+
+.siguiente__aviso { font-size: var(--t-s); color: var(--gris); margin: 0 0 0.5rem; }
+
+.siguiente__titulo {
+  font-family: var(--display);
+  font-variation-settings: "SOFT" 0, "WONK" 1;
+  font-weight: 400;
+  font-size: var(--t-2xl);
+  letter-spacing: -0.03em;
+  margin: 0;
+}
+
+.siguiente__titulo a { text-decoration: none; }
+.siguiente__titulo a:hover { color: var(--acento); }
+
+/* ---------- Adaptación a pantallas pequeñas ---------- */
+
+@media (max-width: 46rem) {
+  .proyecto,
+  .sobre,
+  .bloque {
+    grid-template-columns: 1fr;
+  }
+
+  .bloque { gap: 1rem; }
+
+  .portada__frase { max-width: 100%; }
+
+  .retrato { max-width: 20rem; margin-top: 2.5rem; }
+
+  .barra { padding-block: 1.25rem; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  *, *::before, *::after {
+    animation-duration: 0.001ms !important;
+    animation-delay: 0ms !important;
+    transition-duration: 0.001ms !important;
+  }
+}
+</style>
+</head>
+
+<body>
+
+<div class="limite">
+  <header class="barra">
+    <a class="barra__firma" href="../index.html">Claudia Erustes</a>
+    <nav class="barra__menu" aria-label="Principal">
+      <a href="../index.html#trabajo">Trabajo</a>
+      <a href="../index.html#sobre">Sobre mí</a>
+      <a href="../index.html#contacto">Contacto</a>
+    </nav>
+  </header>
+</div>
+
+<main>
+
+  <section class="caso__cabecera limite">
+    <h1 class="caso__titulo">Madrid<br>Habitada</h1>
+    <p class="caso__entrada">
+      <!-- Una frase: qué es y por qué lo hiciste. -->
+      Por completar.
+    </p>
+
+    <dl class="caso__ficha">
+      <div>
+        <dt>Tipo de proyecto</dt>
+        <dd>Proyecto propio</dd>
+      </div>
+      <div>
+        <dt>Mi papel</dt>
+        <dd>Concepto, diseño y desarrollo</dd>
+      </div>
+      <div>
+        <dt>Año</dt>
+        <dd><!-- año -->Por completar</dd>
+      </div>
+      <div>
+        <dt>Herramientas</dt>
+        <dd>Figma, HTML, CSS, JavaScript</dd>
+      </div>
+      <div>
+        <dt>Enlace</dt>
+        <dd><a class="enlace" href="https://claudiaerustesmp-sketch.github.io/Madrid-Habitada/">Ver la web</a></dd>
+      </div>
+    </dl>
+  </section>
+
+  <figure class="caso__portada limite">
+    <!-- <img src="../imagenes/madrid-habitada-hero.jpg" alt="Web de Madrid Habitada"> -->
+    <div class="hueco">imagenes/madrid-habitada-hero.jpg</div>
+  </figure>
+
+  <section class="bloque limite">
+    <h2 class="bloque__titulo">De dónde sale</h2>
+    <div class="bloque__cuerpo">
+      <p>
+        <!-- Los proyectos propios se cuentan distinto: aquí lo interesante
+             es por qué te importaba a ti este tema y qué querías conseguir.
+             Nadie te lo encargó, así que la motivación es el encargo. -->
+        Por completar.
+      </p>
+      <p class="destacado">
+        <!-- La idea central del proyecto en una frase. -->
+        Por completar.
+      </p>
+    </div>
+  </section>
+
+  <section class="bloque limite">
+    <h2 class="bloque__titulo">Proceso</h2>
+    <div class="bloque__cuerpo">
+      <p>
+        <!-- Cómo pasaste de la idea a la estructura: qué contenido había,
+             cómo lo organizaste, qué probaste. -->
+        Por completar.
+      </p>
+
+      <figure class="figura">
+        <div class="figura__marco">
+          <div class="hueco">imagenes/madrid-habitada-proceso.jpg</div>
+        </div>
+        <figcaption>Por completar.</figcaption>
+      </figure>
+    </div>
+  </section>
+
+  <section class="bloque limite">
+    <h2 class="bloque__titulo">Diseño</h2>
+    <div class="bloque__cuerpo">
+      <p>
+        <!-- Decisiones visuales y de interacción, con su porqué. -->
+        Por completar.
+      </p>
+
+      <div class="galeria">
+        <figure class="figura">
+          <div class="figura__marco"><div class="hueco">madrid-habitada-01.jpg</div></div>
+        </figure>
+        <figure class="figura">
+          <div class="figura__marco"><div class="hueco">madrid-habitada-02.jpg</div></div>
+        </figure>
+        <figure class="figura">
+          <div class="figura__marco"><div class="hueco">madrid-habitada-03.jpg</div></div>
+        </figure>
+      </div>
+    </div>
+  </section>
+
+  <section class="bloque limite">
+    <h2 class="bloque__titulo">Qué me llevo</h2>
+    <div class="bloque__cuerpo">
+      <p>
+        <!-- Aquí puedes hablar de haberlo programado tú: es un plus real
+             para un perfil de diseño, siempre que expliques qué te aportó. -->
+        Por completar.
+      </p>
+    </div>
+  </section>
+
+  <nav class="siguiente limite">
+    <p class="siguiente__aviso">Siguiente proyecto</p>
+    <p class="siguiente__titulo"><a href="haerentia.html">Haerentia</a></p>
+  </nav>
+
+</main>
+
+<footer class="pie limite">
+  <span><a href="../index.html">Volver al inicio</a></span>
+  <span>Claudia Erustes Barba, 2026</span>
+</footer>
+
+</body>
+</html>

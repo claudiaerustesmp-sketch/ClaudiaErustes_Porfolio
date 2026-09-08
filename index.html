@@ -1,0 +1,740 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Claudia Erustes Barba · Diseño UX/UI y gráfico en Madrid</title>
+<meta name="description" content="Diseñadora gráfica y de producto digital en Leganés, Madrid. Casos de estudio de UX/UI, identidad de marca y contenido digital.">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght,SOFT,WONK@9..144,300..600,0..100,0..1&family=Instrument+Sans:wght@400..600&display=swap" rel="stylesheet">
+<style>
+/* ============================================================
+   Porfolio · hoja de estilos única
+   Para cambiar el color de acento, edita --acento aquí abajo.
+   ============================================================ */
+
+:root {
+  /* Color */
+  --papel:      #F3F3F1;
+  --papel-hond: #E9E9E5;
+  --tinta:      #1A1A18;
+  --gris:       #6E6E68;
+  --linea:      #DCDCD6;
+  --acento:     #2F5D50;
+
+  /* Tipografía */
+  --display: "Fraunces", Georgia, serif;
+  --texto:   "Instrument Sans", system-ui, -apple-system, sans-serif;
+
+  /* Escala tipográfica (base 16, razón ~1,25) */
+  --t-xs: 0.8125rem;
+  --t-s:  0.9375rem;
+  --t-m:  1.0625rem;
+  --t-l:  1.375rem;
+  --t-xl: clamp(1.75rem, 1.2rem + 2vw, 2.5rem);
+  --t-2xl: clamp(2.25rem, 1.4rem + 3.4vw, 3.75rem);
+
+  /* Ritmo vertical */
+  --aire-s: 2rem;
+  --aire-m: clamp(4rem, 8vw, 7rem);
+  --aire-l: clamp(6rem, 14vw, 12rem);
+
+  /* Medidas */
+  --ancho: 78rem;
+  --margen: clamp(1.5rem, 6vw, 6rem);
+}
+
+*, *::before, *::after { box-sizing: border-box; }
+
+html { -webkit-text-size-adjust: 100%; scroll-behavior: smooth; }
+
+body {
+  margin: 0;
+  background: var(--papel);
+  color: var(--tinta);
+  font-family: var(--texto);
+  font-size: var(--t-m);
+  line-height: 1.6;
+  font-synthesis-weight: none;
+  -webkit-font-smoothing: antialiased;
+}
+
+img { display: block; max-width: 100%; height: auto; }
+
+a { color: inherit; }
+
+::selection { background: var(--acento); color: var(--papel); }
+
+:focus-visible {
+  outline: 2px solid var(--acento);
+  outline-offset: 4px;
+  border-radius: 2px;
+}
+
+.limite {
+  max-width: var(--ancho);
+  margin-inline: auto;
+  padding-inline: var(--margen);
+}
+
+/* ---------- Barra superior ---------- */
+
+.barra {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 2rem;
+  flex-wrap: wrap;
+  padding-block: 1.75rem;
+}
+
+.barra__firma {
+  font-family: var(--display);
+  font-variation-settings: "SOFT" 0, "WONK" 1;
+  font-size: var(--t-l);
+  font-weight: 400;
+  text-decoration: none;
+  letter-spacing: -0.01em;
+}
+
+.barra__menu {
+  display: flex;
+  gap: 1.75rem;
+  font-size: var(--t-s);
+}
+
+.barra__menu a {
+  text-decoration: none;
+  color: var(--gris);
+  padding-block: 0.25rem;
+  border-bottom: 1px solid transparent;
+  transition: color 0.15s ease, border-color 0.15s ease;
+}
+
+.barra__menu a:hover { color: var(--tinta); border-bottom-color: var(--tinta); }
+
+/* ---------- Portada ---------- */
+
+.portada {
+  padding-block: clamp(3rem, 9vw, 8rem) var(--aire-m);
+}
+
+.portada__nombre {
+  font-family: var(--display);
+  font-variation-settings: "SOFT" 0, "WONK" 1;
+  font-optical-sizing: auto;
+  font-weight: 300;
+  font-size: clamp(2.75rem, 12vw, 10.5rem);
+  line-height: 0.86;
+  letter-spacing: -0.045em;
+  margin: 0;
+}
+
+.portada__frase {
+  font-size: var(--t-xl);
+  font-weight: 400;
+  line-height: 1.3;
+  letter-spacing: -0.015em;
+  max-width: 30ch;
+  margin: clamp(2rem, 5vw, 3.5rem) 0 0;
+}
+
+.portada__pie {
+  margin: 2.5rem 0 0;
+  font-size: var(--t-m);
+  color: var(--gris);
+  max-width: 46ch;
+}
+
+/* Entrada única al cargar la página */
+.portada__nombre,
+.portada__frase,
+.portada__pie {
+  animation: entra 0.9s cubic-bezier(0.2, 0.7, 0.3, 1) both;
+}
+.portada__frase { animation-delay: 0.12s; }
+.portada__pie   { animation-delay: 0.2s; }
+
+@keyframes entra {
+  from { opacity: 0; transform: translateY(0.6rem); }
+  to   { opacity: 1; transform: none; }
+}
+
+/* ---------- Secciones ---------- */
+
+.seccion { padding-block: var(--aire-m); }
+
+.seccion__titulo {
+  font-family: var(--display);
+  font-variation-settings: "SOFT" 0, "WONK" 1;
+  font-weight: 400;
+  font-size: var(--t-xl);
+  letter-spacing: -0.02em;
+  margin: 0 0 var(--aire-s);
+}
+
+/* ---------- Listado de proyectos ---------- */
+
+.proyectos {
+  display: grid;
+  gap: var(--aire-m);
+}
+
+.proyecto {
+  display: grid;
+  grid-template-columns: minmax(0, 3fr) minmax(0, 2fr);
+  gap: clamp(1.5rem, 4vw, 4rem);
+  align-items: start;
+}
+
+.proyecto__imagen {
+  margin: 0;
+  aspect-ratio: 4 / 3;
+  background: var(--papel-hond);
+  overflow: hidden;
+}
+
+.proyecto__imagen img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* Marca visible mientras no haya imagen todavía */
+.hueco {
+  width: 100%;
+  height: 100%;
+  display: grid;
+  place-content: center;
+  color: var(--gris);
+  font-size: var(--t-xs);
+  text-align: center;
+  padding: 1rem;
+  background:
+    repeating-linear-gradient(
+      -45deg,
+      transparent 0 14px,
+      rgba(110, 110, 104, 0.07) 14px 28px
+    );
+}
+
+.proyecto__ficha { padding-top: 0.25rem; }
+
+.proyecto__titulo {
+  font-family: var(--display);
+  font-variation-settings: "SOFT" 0, "WONK" 1;
+  font-weight: 400;
+  font-size: var(--t-2xl);
+  line-height: 1.02;
+  letter-spacing: -0.03em;
+  margin: 0 0 0.75rem;
+}
+
+.proyecto__titulo a {
+  text-decoration: none;
+  background-image: linear-gradient(var(--acento), var(--acento));
+  background-repeat: no-repeat;
+  background-size: 0% 1px;
+  background-position: 0 92%;
+  transition: background-size 0.3s ease, color 0.2s ease;
+}
+
+.proyecto__titulo a:hover { background-size: 100% 1px; color: var(--acento); }
+
+.proyecto__datos {
+  font-size: var(--t-s);
+  color: var(--gris);
+  margin: 0 0 1rem;
+}
+
+.proyecto__datos span { display: block; }
+
+.proyecto__resumen {
+  margin: 0 0 1.25rem;
+  max-width: 42ch;
+}
+
+.enlace {
+  font-size: var(--t-s);
+  color: var(--acento);
+  text-decoration: none;
+  border-bottom: 1px solid currentColor;
+  padding-bottom: 1px;
+}
+
+.enlace:hover { color: var(--tinta); }
+
+/* ---------- Sobre mí ---------- */
+
+.sobre {
+  display: grid;
+  grid-template-columns: minmax(0, 3fr) minmax(0, 2fr);
+  gap: clamp(2rem, 5vw, 5rem);
+  align-items: start;
+}
+
+.sobre p { max-width: 60ch; }
+
+.sobre p:first-of-type {
+  font-size: var(--t-l);
+  line-height: 1.45;
+  letter-spacing: -0.01em;
+}
+
+.retrato { margin: 0; }
+
+.retrato img {
+  width: 100%;
+  aspect-ratio: 3 / 4;
+  object-fit: cover;
+}
+
+.ficha-cv {
+  margin-top: var(--aire-m);
+  padding-top: 1.75rem;
+  border-top: 1px solid var(--linea);
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(12rem, 1fr));
+  gap: 2.5rem 2.5rem;
+  font-size: var(--t-s);
+}
+
+.ficha-cv h3 {
+  font-size: var(--t-s);
+  font-weight: 500;
+  color: var(--gris);
+  margin: 0 0 1.1rem;
+}
+
+.ficha-cv ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.ficha-cv li { margin-bottom: 0.9rem; }
+.ficha-cv li:last-child { margin-bottom: 0; }
+
+.cv-meta {
+  display: block;
+  color: var(--gris);
+}
+
+.cv-descarga { margin-top: 2.5rem; }
+
+/* ---------- Contacto ---------- */
+
+.contacto { padding-block: var(--aire-m) var(--aire-l); }
+
+.contacto__correo {
+  font-family: var(--display);
+  font-variation-settings: "SOFT" 0, "WONK" 1;
+  font-weight: 300;
+  font-size: clamp(1.5rem, 5.2vw, 3.75rem);
+  line-height: 1.1;
+  letter-spacing: -0.035em;
+  color: var(--acento);
+  text-decoration: none;
+  display: inline-block;
+  margin: 0.5rem 0 2rem;
+  word-break: break-word;
+}
+
+.contacto__correo:hover { color: var(--tinta); }
+
+.contacto__redes {
+  display: flex;
+  gap: 1.75rem;
+  flex-wrap: wrap;
+  font-size: var(--t-s);
+  padding: 0;
+  margin: 0;
+  list-style: none;
+}
+
+/* ---------- Pie ---------- */
+
+.pie {
+  border-top: 1px solid var(--linea);
+  padding-block: 2rem 3rem;
+  font-size: var(--t-xs);
+  color: var(--gris);
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+/* ============================================================
+   Página de caso de estudio
+   ============================================================ */
+
+.caso__cabecera { padding-block: clamp(2rem, 6vw, 5rem) var(--aire-s); }
+
+.caso__titulo {
+  font-family: var(--display);
+  font-variation-settings: "SOFT" 0, "WONK" 1;
+  font-weight: 300;
+  font-size: clamp(3rem, 11vw, 8rem);
+  line-height: 0.9;
+  letter-spacing: -0.04em;
+  margin: 0;
+}
+
+.caso__entrada {
+  font-size: var(--t-xl);
+  font-weight: 400;
+  line-height: 1.3;
+  letter-spacing: -0.015em;
+  max-width: 30ch;
+  margin: 2rem 0 0;
+}
+
+.caso__ficha {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(9rem, 1fr));
+  gap: 1.5rem 2rem;
+  margin: var(--aire-m) 0 0;
+  padding-top: 1.5rem;
+  border-top: 1px solid var(--linea);
+  font-size: var(--t-s);
+}
+
+.caso__ficha dt { color: var(--gris); margin-bottom: 0.2rem; }
+.caso__ficha dd { margin: 0; }
+
+.caso__portada {
+  margin-block: var(--aire-m) 0;
+  aspect-ratio: 16 / 9;
+  background: var(--papel-hond);
+  overflow: hidden;
+}
+
+.caso__portada img { width: 100%; height: 100%; object-fit: cover; }
+
+.bloque {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 2.2fr);
+  gap: clamp(1rem, 4vw, 4rem);
+  padding-block: var(--aire-m);
+}
+
+.bloque__titulo {
+  font-family: var(--display);
+  font-variation-settings: "SOFT" 0, "WONK" 1;
+  font-weight: 400;
+  font-size: var(--t-l);
+  letter-spacing: -0.015em;
+  margin: 0;
+  align-self: start;
+}
+
+.bloque__cuerpo > * { max-width: 62ch; }
+.bloque__cuerpo > :first-child { margin-top: 0; }
+.bloque__cuerpo > :last-child { margin-bottom: 0; }
+
+.bloque__cuerpo h3 {
+  font-size: var(--t-m);
+  font-weight: 500;
+  margin: 2rem 0 0.5rem;
+}
+
+.bloque__cuerpo ul { padding-left: 1.1rem; }
+.bloque__cuerpo li { margin-bottom: 0.4rem; }
+
+.destacado {
+  font-size: var(--t-l);
+  line-height: 1.4;
+  letter-spacing: -0.01em;
+  border-left: 2px solid var(--acento);
+  padding-left: 1.25rem;
+  margin: 2rem 0;
+  max-width: 40ch;
+}
+
+.figura { margin: 2.5rem 0 0; max-width: none; }
+
+.figura__marco {
+  aspect-ratio: 3 / 2;
+  background: var(--papel-hond);
+  overflow: hidden;
+}
+
+.figura__marco img { width: 100%; height: 100%; object-fit: cover; }
+
+.figura figcaption {
+  font-size: var(--t-xs);
+  color: var(--gris);
+  margin-top: 0.75rem;
+  max-width: 52ch;
+}
+
+.galeria {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(10rem, 1fr));
+  gap: 1rem;
+  margin-top: 2.5rem;
+}
+
+.galeria .figura__marco { aspect-ratio: 9 / 16; }
+
+.siguiente {
+  border-top: 1px solid var(--linea);
+  padding-block: var(--aire-m);
+}
+
+.siguiente__aviso { font-size: var(--t-s); color: var(--gris); margin: 0 0 0.5rem; }
+
+.siguiente__titulo {
+  font-family: var(--display);
+  font-variation-settings: "SOFT" 0, "WONK" 1;
+  font-weight: 400;
+  font-size: var(--t-2xl);
+  letter-spacing: -0.03em;
+  margin: 0;
+}
+
+.siguiente__titulo a { text-decoration: none; }
+.siguiente__titulo a:hover { color: var(--acento); }
+
+/* ---------- Adaptación a pantallas pequeñas ---------- */
+
+@media (max-width: 46rem) {
+  .proyecto,
+  .sobre,
+  .bloque {
+    grid-template-columns: 1fr;
+  }
+
+  .bloque { gap: 1rem; }
+
+  .portada__frase { max-width: 100%; }
+
+  .retrato { max-width: 20rem; margin-top: 2.5rem; }
+
+  .barra { padding-block: 1.25rem; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  *, *::before, *::after {
+    animation-duration: 0.001ms !important;
+    animation-delay: 0ms !important;
+    transition-duration: 0.001ms !important;
+  }
+}
+</style>
+</head>
+
+<body>
+
+<div class="limite">
+  <header class="barra">
+    <a class="barra__firma" href="index.html">Claudia Erustes</a>
+    <nav class="barra__menu" aria-label="Principal">
+      <a href="#trabajo">Trabajo</a>
+      <a href="#sobre">Sobre mí</a>
+      <a href="#contacto">Contacto</a>
+    </nav>
+  </header>
+</div>
+
+<main>
+
+  <!-- ============ PORTADA ============ -->
+  <section class="portada limite">
+    <h1 class="portada__nombre">Claudia<br>Erustes Barba</h1>
+
+    <p class="portada__frase">
+      Diseño interfaces y marcas para proyectos que pasan en un sitio
+      concreto y con gente concreta.
+    </p>
+
+    <p class="portada__pie">
+      Diseñadora gráfica y multimedia con máster en UX/UI. Trabajo como
+      freelance desde Leganés, en el sur de Madrid. Ahora mismo busco
+      incorporarme a un equipo de diseño.
+    </p>
+  </section>
+
+  <!-- ============ TRABAJO ============ -->
+  <section class="seccion limite" id="trabajo">
+    <h2 class="seccion__titulo">Proyectos</h2>
+
+    <div class="proyectos">
+
+      <!-- Haerentia -->
+      <article class="proyecto">
+        <figure class="proyecto__imagen">
+          <!-- Sustituye el div por: <img src="imagenes/haerentia-portada.jpg" alt="Identidad de Haerentia"> -->
+          <div class="hueco">imagenes/haerentia-portada.jpg</div>
+        </figure>
+        <div class="proyecto__ficha">
+          <h3 class="proyecto__titulo"><a href="proyectos/haerentia.html">Haerentia</a></h3>
+          <p class="proyecto__datos">
+            <span>Joyería artesanal con propósito social</span>
+            <span>Identidad de marca y diseño digital</span>
+          </p>
+          <p class="proyecto__resumen">
+            Marca completa para un taller de joyería artesanal: identidad
+            visual, sistema gráfico y su traducción a la tienda.
+          </p>
+          <a class="enlace" href="proyectos/haerentia.html">Ver el caso completo</a>
+        </div>
+      </article>
+
+      <!-- Madrid Habitada -->
+      <article class="proyecto">
+        <figure class="proyecto__imagen">
+          <!-- <img src="imagenes/madrid-habitada-portada.jpg" alt="Web de Madrid Habitada"> -->
+          <div class="hueco">imagenes/madrid-habitada-portada.jpg</div>
+        </figure>
+        <div class="proyecto__ficha">
+          <h3 class="proyecto__titulo"><a href="proyectos/madrid-habitada.html">Madrid Habitada</a></h3>
+          <p class="proyecto__datos">
+            <span>Proyecto propio</span>
+            <span>Concepto, diseño y desarrollo web</span>
+          </p>
+          <p class="proyecto__resumen">
+            <!-- Escribe aquí dos líneas sobre de qué va el proyecto -->
+            Pendiente de escribir el resumen.
+          </p>
+          <a class="enlace" href="proyectos/madrid-habitada.html">Ver el caso completo</a>
+        </div>
+      </article>
+
+    </div>
+  </section>
+
+  <!-- ============ SOBRE MÍ ============ -->
+  <section class="seccion limite" id="sobre">
+    <h2 class="seccion__titulo">Sobre mí</h2>
+
+    <div class="sobre">
+      <div>
+        <p>
+          Empecé estudiando marketing y publicidad, seguí con el grado de
+          diseño gráfico y multimedia y acabo de terminar el máster de UX/UI.
+          Cada salto vino de lo mismo: querer entender la pieza que me
+          faltaba para llevar un proyecto desde la idea hasta algo que la
+          gente pueda usar de verdad.
+        </p>
+        <p>
+          Desde 2020 trabajo como freelance con pequeñas empresas: ecommerce,
+          cosmética y entidades sociales. Casi siempre entro en proyectos
+          donde no hay un equipo de diseño detrás, así que decido desde la
+          marca hasta cómo se compra en la web. Eso enseña a priorizar
+          rápido y a defender por qué.
+        </p>
+        <p>
+          Soy de Leganés y sigo aquí. El sur de Madrid está muy presente en
+          cómo miro los proyectos: quién se queda fuera, qué se da por hecho
+          y para quién se diseña por defecto.
+        </p>
+      </div>
+
+      <figure class="retrato">
+        <img src="imagenes/claudia-retrato.jpg" alt="Retrato de Claudia Erustes Barba">
+      </figure>
+    </div>
+
+    <div class="ficha-cv">
+
+      <div>
+        <h3>Experiencia</h3>
+        <ul>
+          <li>
+            Diseñadora freelance
+            <span class="cv-meta">2020 · Hoy</span>
+          </li>
+          <li>
+            <!-- ¿Qué puesto fue? Si no fue de diseño, dime y lo quitamos -->
+            Compass Group
+            <span class="cv-meta">2025 · puesto por completar</span>
+          </li>
+          <li>
+            <!-- ¿Qué puesto fue? -->
+            JustEasy Digital Agency
+            <span class="cv-meta">2020 · puesto por completar</span>
+          </li>
+        </ul>
+      </div>
+
+      <div>
+        <h3>Formación</h3>
+        <ul>
+          <li>
+            Máster en Diseño UX/UI
+            <span class="cv-meta">Universidad Europea, 2026</span>
+          </li>
+          <li>
+            Grado en Diseño Gráfico y Multimedia
+            <span class="cv-meta">Universidad Europea, 2025</span>
+          </li>
+          <li>
+            Técnico Superior en Marketing y Publicidad
+            <span class="cv-meta">CampusFP, 2020</span>
+          </li>
+          <li>
+            Técnico Superior en Maquillaje y Caracterización
+            <span class="cv-meta">Instituto del Cine de Madrid, 2019</span>
+          </li>
+        </ul>
+      </div>
+
+      <div>
+        <h3>Qué hago</h3>
+        <ul>
+          <li>Investigación con personas usuarias</li>
+          <li>Arquitectura de información</li>
+          <li>Wireframes y prototipos</li>
+          <li>Sistemas de diseño</li>
+          <li>Identidad de marca</li>
+          <li>Contenido digital y ecommerce</li>
+        </ul>
+      </div>
+
+      <div>
+        <h3>Herramientas e idiomas</h3>
+        <ul>
+          <li>Figma</li>
+          <li>Illustrator, Photoshop, InDesign</li>
+          <li>HTML y CSS</li>
+          <li>Español nativo, inglés avanzado</li>
+          <li>Carnet B y coche propio</li>
+        </ul>
+      </div>
+
+    </div>
+
+    <p class="cv-descarga">
+      <!-- Sube el PDF a la carpeta del repo y cambia el enlace -->
+      <a class="enlace" href="cv-claudia-erustes.pdf">Descargar el CV completo</a>
+    </p>
+  </section>
+
+  <!-- ============ CONTACTO ============ -->
+  <section class="contacto limite" id="contacto">
+    <h2 class="seccion__titulo">Hablamos</h2>
+    <p>Estoy disponible para incorporarme a un equipo en Madrid o en remoto.</p>
+
+    <a class="contacto__correo" href="mailto:claudia.erustesmp@gmail.com">claudia.erustesmp@gmail.com</a>
+
+    <ul class="contacto__redes">
+      <li><a class="enlace" href="#">LinkedIn</a></li>
+      <li><a class="enlace" href="#">Behance</a></li>
+      <li><a class="enlace" href="#">Descargar CV</a></li>
+    </ul>
+  </section>
+
+</main>
+
+<footer class="pie limite">
+  <span>Claudia Erustes Barba, diseñadora en Madrid</span>
+  <span>Diseñado y programado por mí, 2026</span>
+</footer>
+
+</body>
+</html>
